@@ -9,6 +9,6 @@
 #define MCU_FREQUENCY_H_
 
 /************ Set the CLK Frequency of the System ******************/
-#define F_CPU 8000000UL
+#define F_CPU 16000000UL
 
 #endif /* MCU_FREQUENCY_H_ */

@@ -226,31 +226,10 @@
     <Compile Include="MCAL\UART\inc\UART_Lcfg.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="MCAL\UART\inc\Usart.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="MCAL\UART\inc\Usart_Cfg.h">
-      <SubType>compile</SubType>
-    </Compile>
     <Compile Include="MCAL\UART\src\UART %283%29.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="MCAL\UART\src\UART_Lcfg.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="MCAL\UART\src\Usart.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="PushButton.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="PushButton.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="PushButtonCfg.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="PushButtonPrivate.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Services\SwDelay\inc\SwDelay.h">

@@ -26,9 +26,5 @@ MCAL\UART\src\UART %283%29.c
 
 MCAL\UART\src\UART_Lcfg.c
 
-MCAL\UART\src\Usart.c
-
-PushButton.c
-
 Services\SwDelay\src\SwDelay.c
 

@@ -17,16 +17,28 @@
 /************************************************************************/
 /*                       Extern Global Variables                        */
 /************************************************************************/
-extern volatile uint32 Time_Current;
-extern volatile uint32 Time_Prev;
-extern volatile uint32 Time_Init;
-extern volatile uint8  Distance;
 
 
+/************************************************************************/
+/*                     Functions Prototypes                             */
+/************************************************************************/
+/**
+ * Function : Measurement_Init
+ * Description: this function is to initialize the Measurement ECU 
+ * @return void
+ */
 void Measurement_Init();
-
+/**
+ * Function : Measurement_Calc
+ * Description: this function is to Start the Measurement and update the result
+ * @return void
+ */
 void Measurement_Calc();
 
+/**
+ * Function : Measurement_Send
+ * Description: This function is to Send the Measurement To PC through TTL UART 
+ * @return void
+ */
 void Measurement_Send();
-
 #endif /* COMMUNICATION_H_ */

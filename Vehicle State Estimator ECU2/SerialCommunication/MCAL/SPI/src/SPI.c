@@ -45,7 +45,9 @@
 #define SPR1    1
 #define SPR0    0
 
-
+/************************************************************************/
+/*                   Global Variables                                   */
+/************************************************************************/
 volatile uint32 Speed = 0;
 volatile int Count_Flag = 0;
 volatile int Speed_Flag = 0;
@@ -217,34 +219,11 @@ ISR_T(SPI_STC_vect)
 {
 	Recived = SPI_Read();
 	Gpio_PortWrite(MYPORTA,Recived);
-	
-	if(Count_Flag == 0)
+	/* This Block of code only once at the first send which is the init time */
+	if(Count_Flag == FALSE)
 	{
-	Time_Init = Recived ;//* pow(10,Count_Flag) );
-	Count_Flag = 1;
-	Timers_Start(TIMER1);
-	Time_Prev = Time_Init;
-	Time_Current = Time_Init;
+	Time_Init = Recived ;
+	Count_Flag = TRUE;
 	}
 	Speed = Recived;
-			//Time_Init += (Recived * pow(10,Count_Flag) );
-			//Count_Flag--;
-	//}
-	//else if(Count_Flag == -1)
-	//{
-		//Timers_Start(TIMER1);
-		//Time_Prev = Time_Init;
-		//Time_Current = Time_Init;
-	//}
-	//
-	//if( (Speed_Flag >= 0) && (Count_Flag == -1))
-	//{
-		//Speed += Recived * pow(10,Speed_Flag);
-		//Speed_Flag--;
-	//}
-	//else
-	//{
-		//Speed_Flag = 3;
-	//}	
-	
 }

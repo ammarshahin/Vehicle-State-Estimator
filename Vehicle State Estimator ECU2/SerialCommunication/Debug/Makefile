@@ -84,8 +84,6 @@ C_SRCS +=  \
 ../MCAL/Timers/src/Timers_Lcfg.c \
 ../MCAL/UART/src/UART\ (3).c \
 ../MCAL/UART/src/UART_Lcfg.c \
-../MCAL/UART/src/Usart.c \
-../PushButton.c \
 ../Services/SwDelay/src/SwDelay.c
 
 
@@ -108,8 +106,6 @@ MCAL/Timers/src/Timers.o \
 MCAL/Timers/src/Timers_Lcfg.o \
 MCAL/UART/src/UART\ (3).o \
 MCAL/UART/src/UART_Lcfg.o \
-MCAL/UART/src/Usart.o \
-PushButton.o \
 Services/SwDelay/src/SwDelay.o
 
 OBJS_AS_ARGS +=  \
@@ -125,8 +121,6 @@ MCAL/Timers/src/Timers.o \
 MCAL/Timers/src/Timers_Lcfg.o \
 "MCAL/UART/src/UART (3).o" \
 MCAL/UART/src/UART_Lcfg.o \
-MCAL/UART/src/Usart.o \
-PushButton.o \
 Services/SwDelay/src/SwDelay.o
 
 C_DEPS +=  \
@@ -142,8 +136,6 @@ MCAL/Timers/src/Timers.d \
 MCAL/Timers/src/Timers_Lcfg.d \
 MCAL/UART/src/UART\ (3).d \
 MCAL/UART/src/UART_Lcfg.d \
-MCAL/UART/src/Usart.d \
-PushButton.d \
 Services/SwDelay/src/SwDelay.d
 
 C_DEPS_AS_ARGS +=  \
@@ -159,8 +151,6 @@ MCAL/Timers/src/Timers.d \
 MCAL/Timers/src/Timers_Lcfg.d \
 "MCAL/UART/src/UART (3).d" \
 MCAL/UART/src/UART_Lcfg.d \
-MCAL/UART/src/Usart.d \
-PushButton.d \
 Services/SwDelay/src/SwDelay.d
 
 OUTPUT_FILE_PATH +=SerialCommunication.elf
@@ -255,20 +245,6 @@ MCAL/UART/src/UART\ (3).o: ../MCAL/UART/src/UART\ (3).c
 	
 
 MCAL/UART/src/UART_Lcfg.o: ../MCAL/UART/src/UART_Lcfg.c
-	@echo Building file: $<
-	@echo Invoking: AVR/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\include" -I"../comand/inc" -I"../MCAL/Gpio/inc" -I"../MCAL/Gpio/src" -I"../MCAL/Interrupts/inc" -I"../MCAL/Interrupts/src" -I"../MCAL/MCU/inc" -I"../MCAL/UART/inc" -I"../MCAL/UART/src" -I"../MCAL/SPI/inc" -I"../MCAL/SPI/src" -I"../ECUAL/SSD/inc" -I"../ECUAL/SSD/src" -I"../ECUAL/PushButton/inc" -I"../ECUAL/PushButton/src" -I"../MCAL/Timers/inc" -I"../MCAL/Timers/src" -I"../APP/Communication/inc" -I"../Services/SwDelay/inc" -I"../Services/SwDelay/src"  -O0 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
-	@echo Finished building: $<
-	
-
-MCAL/UART/src/Usart.o: ../MCAL/UART/src/Usart.c
-	@echo Building file: $<
-	@echo Invoking: AVR/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\include" -I"../comand/inc" -I"../MCAL/Gpio/inc" -I"../MCAL/Gpio/src" -I"../MCAL/Interrupts/inc" -I"../MCAL/Interrupts/src" -I"../MCAL/MCU/inc" -I"../MCAL/UART/inc" -I"../MCAL/UART/src" -I"../MCAL/SPI/inc" -I"../MCAL/SPI/src" -I"../ECUAL/SSD/inc" -I"../ECUAL/SSD/src" -I"../ECUAL/PushButton/inc" -I"../ECUAL/PushButton/src" -I"../MCAL/Timers/inc" -I"../MCAL/Timers/src" -I"../APP/Communication/inc" -I"../Services/SwDelay/inc" -I"../Services/SwDelay/src"  -O0 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
-	@echo Finished building: $<
-	
-
-./PushButton.o: .././PushButton.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\include" -I"../comand/inc" -I"../MCAL/Gpio/inc" -I"../MCAL/Gpio/src" -I"../MCAL/Interrupts/inc" -I"../MCAL/Interrupts/src" -I"../MCAL/MCU/inc" -I"../MCAL/UART/inc" -I"../MCAL/UART/src" -I"../MCAL/SPI/inc" -I"../MCAL/SPI/src" -I"../ECUAL/SSD/inc" -I"../ECUAL/SSD/src" -I"../ECUAL/PushButton/inc" -I"../ECUAL/PushButton/src" -I"../MCAL/Timers/inc" -I"../MCAL/Timers/src" -I"../APP/Communication/inc" -I"../Services/SwDelay/inc" -I"../Services/SwDelay/src"  -O0 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

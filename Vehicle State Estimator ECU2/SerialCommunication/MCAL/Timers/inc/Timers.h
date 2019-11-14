@@ -51,6 +51,8 @@
 #define DUTY_CYCLE_PERCENTAGE_FACTOR   100
 
 
+#define SECONDS_TO_SETCOUNTER 1000000
+
 #define TIFR_TOV0_FLAG_MASK 0x01
 #define TIFR_TOV1_FLAG_MASK 0x04
 #define TIFR_TOV2_FLAG_MASK 0x40
@@ -197,7 +199,8 @@ extern volatile uint16 Gv_PrescallerTimer2_AbsoluteValue;
 extern volatile uint8 Gv_PrescallerTimer0_Mask;
 extern volatile uint8 Gv_PrescallerTimer1_Mask;
 extern volatile uint8 Gv_PrescallerTimer2_Mask;
-
+extern volatile uint8 TimerOneSecond_Flag;
+extern volatile uint8 Time_Init;
 /************************************************************************/
 /*                   Timers' Functions' prototypes                      */
 /************************************************************************/

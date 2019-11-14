@@ -5,34 +5,41 @@
  *  Author: AVE-LAP-44
  */ 
 
-
-
+/************************************************************************/
+/*                          Files Includes                              */
+/************************************************************************/
 #include "SPI.h"
 #include "UART.h"
 #include "Timers.h"
 #include "pushButton.h"
 #include "SwDelay.h"
 
-volatile uint8  Distance;
-volatile uint32 Time_Delta;
-volatile uint32 Time_Current;
-volatile uint32 Time_Prev;
-volatile uint32 Time_Init;
-volatile uint8 Button_Flag;
+/************************************************************************/
+/*                         Global Variables                             */
+/************************************************************************/
+volatile uint8 Distance;
 
-#define DELAY_TIME 500
+/************************************************************************/
+/*                      Macros Used in the Code                         */
+/************************************************************************/
+#define DELAY_TIME 200
 #define TIME_FACTOR 0
+#define MAX_ONESECOND 3
 
+/************************************************************************/
+/*                     Functions Implementations                        */
+/************************************************************************/
+/**
+ * Function : Measurement_Init
+ * Description: this function is to initialize the Measurement ECU 
+ * @return void
+ */
 void Measurement_Init()
 {
+	TimerOneSecond_Flag = FALSE;
 	Distance = FALSE;
-	Time_Delta = FALSE;
-	Time_Init = FALSE;
-	Count_Flag = FALSE;
-	Button_Flag = FALSE;
 	Speed = FALSE;
-	Time_Prev = FALSE;
-	Time_Current = FALSE;
+	Time_Init = FALSE;
 	SPI_Init(&SPI_Cfg_s);
 	UART_Init(&UART_Cfg_s);
 	Timers_Init(&timer1_cfg_s);
@@ -40,29 +47,50 @@ void Measurement_Init()
 	pushButton_Init(pushButton1);
 }
 
+
+/**
+ * Function : Measurement_Calc
+ * Description: this function is to Start the Measurement and update the result
+ * @return void
+ */
 void Measurement_Calc()
 {
-	static uint8 Button_Flag2 = FALSE;
+	static uint8 Button_Flag = FALSE;
 	if( pushButton_Get_Status(pushButton0))
 	{
-		Button_Flag2 = TRUE;
+		Button_Flag = TRUE;
+		Timers_Start(TIMER1);
+		Distance = 0;
 	}
 	
 	if( pushButton_Get_Status(pushButton1))
 	{
-		Button_Flag2 = FALSE;
+		Button_Flag = FALSE;
 	}
-	
-	if( Count_Flag  && Button_Flag2)
+
+	if( Count_Flag  && Button_Flag && (TimerOneSecond_Flag < MAX_ONESECOND) )
 	{
-		Time_Delta = Time_Current - Time_Prev;
-		Distance  += (Time_Delta * Speed);
-		Time_Prev = Time_Current;
+		Distance  += Speed;
+		TimerOneSecond_Flag++;
 	}
+
 }
 
+
+/**
+ * Function : Measurement_Send
+ * Description: This function is to Send the Measurement To PC through TTL UART 
+ * @return void
+ */
 void Measurement_Send()
 {
-	UART_SendToTTL(Distance);
-	SwDelay_ms(DELAY_TIME);
+	if(TimerOneSecond_Flag < 3)
+	{
+		UART_SendToTTL(Distance);
+		TimerOneSecond_Flag++;
+	}
+	else
+	{
+		//Do nothing
+	}
 }

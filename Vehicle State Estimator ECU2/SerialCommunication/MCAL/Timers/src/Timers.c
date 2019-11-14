@@ -13,8 +13,7 @@
 #include "Timers_Lcfg.h"
 #include "Timers.h"
 #include "Interrupts.h"
-#include "communication.h"
- 
+
 /************************************************************************/
 /*                          Global Variables                            */
 /************************************************************************/
@@ -31,8 +30,15 @@ volatile uint8 Gv_PrescallerTimer2_Mask = T2_PRESCALER_1;
 
 static volatile uint32 Gv_F_CPU;
 static volatile uint16  Gv_Count;
+volatile uint8 TimerOneSecond_Flag;
 
+volatile uint8 Time_Init;
+
+/************************************************************************/
+/*                               MACROS                                 */
+/************************************************************************/
 #define SHIFT_FACTOR 8
+
 /************************************************************************/
 /*                   Timers' Functions' Implementations                 */
 /************************************************************************/
@@ -716,6 +722,6 @@ void Timers_timer2_SwPWM(uint8 dutyCycle,uint64 freq)
 
 ISR_T(TIMER1_OVF_vect)
 {
-	Time_Current++;
-	Timers_SetCounter(TIMER1,SECONDS_TO_MICROSECONSD_FACTOR);
+	TimerOneSecond_Flag = TRUE;
+	Timers_SetCounter(TIMER1,SECONDS_TO_SETCOUNTER);
 }
